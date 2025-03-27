@@ -37,6 +37,7 @@ function draw() {
     p2 = priority_2.value();
     p3 = priority_3.value();
   });
+
   reset.mousePressed(()=>{
     state = 0;
     roll_size.value(0);
@@ -44,6 +45,7 @@ function draw() {
     priority_2.value(0);
     priority_3.value(0);
   });
+  
   if(state==1) {
   for(var i = floor(rs/p1);i>0;i--) {
     var d1 = rs-i*p1;
@@ -54,7 +56,10 @@ function draw() {
         text(i+"("+p1*i+")",400+(display_count-1)*150,95);
         text(j+"("+p2*j+")",400+(display_count-1)*150,125);
         text(floor(d2/p3)+"("+p3*(floor(d2/p3))+")",400+(display_count-1)*150,155);
-        text((rs-i*p1-j*p2-(floor(d2/p3)*p3)),400+(display_count-1)*150,185);
+        var wastage = (rs-i*p1-j*p2-(floor(d2/p3)*p3));
+        var tp = rs-wastage;
+        text(wastage,400+(display_count-1)*150,185);
+        text(tp,400+(display_count-1)*150,215);
         if(display_count==3) {
           i=0;
           j=0;
@@ -73,6 +78,7 @@ function draw() {
     text("No. of 2nd Priority cut  "+p2,400,125);
     text("No. of 3rd Priority cut  "+p3,400,155);*/
     text("Wastage",300,185);
+    text("Total Production",300,215);
     text("ROLL SIZE",70,65);
     text("1st Priority cut",70,95);
     text("2nd Priority cut",70,125);

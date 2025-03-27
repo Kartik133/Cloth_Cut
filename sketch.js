@@ -6,10 +6,10 @@ function setup() {
   createCanvas(displayWidth,displayHeight);
   fill(255);
   textAlign(CENTER);
-  roll_size = createInput(55.45,"number");
-  priority_1 = createInput(3.45,"number");
-  priority_2 = createInput(3.20,"number");
-  priority_3 = createInput(2.95,"number");
+  roll_size = createInput(0,"number");
+  priority_1 = createInput(0,"number");
+  priority_2 = createInput(0,"number");
+  priority_3 = createInput(0,"number");
   set = createButton("Set");
   roll_size.position(150,50);
   priority_1.position(150,80);

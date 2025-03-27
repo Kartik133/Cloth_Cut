@@ -43,11 +43,10 @@ function draw() {
   if(state==1 && display_count!=3) {
   for(var i = floor(rs/p1);i>0;i--) {
     var d1 = rs-i*p1;
-    for(var j = floor(d1/p2);j>0;j--) {
+    for(var j = floor(d1/p2);j>=0;j--) {
       var d2 = d1-j*p2;
       if(d2%p3<0.1) {
         display_count++;
-        console.log(i,j,floor(d2/p3),(rs-i*p1-j*p2-(floor(d2/p3)*p3)));
         text(i,70+display_count*150,95);
         text(j,70+display_count*150,125);
         text(floor(d2/p3),70+display_count*150,155);

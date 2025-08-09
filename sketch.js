@@ -7,11 +7,11 @@ function setup() {
   createCanvas(displayWidth,displayHeight);
   fill(0);
   textAlign(CENTER);
-  maw = createInput(0,"number");
-  roll_size = createInput(0,"number");
-  priority_1 = createInput(0,"number");
-  priority_2 = createInput(0,"number");
-  priority_3 = createInput(0,"number");
+  maw = createInput(0.10,"number");
+  roll_size = createInput(50,"number");
+  priority_1 = createInput(3.45,"number");
+  priority_2 = createInput(3.20,"number");
+  priority_3 = createInput(3.70,"number");
   set = createButton("Calculate");
   reset = createButton("Reset");
   maw.position(160,20);
@@ -21,6 +21,7 @@ function setup() {
   priority_3.position(160,140);
   set.position(160,170);
   reset.position(160,200);
+  frameRate(5);
 }
 
 function draw() {
@@ -51,25 +52,27 @@ function draw() {
   });
 
   if(state==1) {
-  for(var i = floor(rs/p1);i>=floor(0.8*rs/p1);i--) {
+  for(var i = (rs/p1).toFixed();i>=0;i--) {
     var d1 = rs-i*p1;
-    for(var j = floor(d1/p2);j>=0;j--) {
+    var d11 = d1.toFixed(2);
+    for(var j = ((d11)/p2).toFixed( );j>=0;j--) {
       var d2 = d1-j*p2;
-      if(d2%p3<=maw.value()) {
+      var d22 = d2.toFixed(2);
+      if(((d22)%p3).toFixed(2)<=maw.value() && ((d22)%p3).toFixed(2)>=0) {
         display_count++;
-        text(i+"("+p1*i+")",410+(display_count-1)*150,95);
-        text(j+"("+p2*j+")",410+(display_count-1)*150,125);
-        text(floor(d2/p3)+"("+p3*(floor(d2/p3))+")",410+(display_count-1)*150,155);
-        var wastage = (rs-i*p1-j*p2-(floor(d2/p3)*p3));
+        text(i+"("+(p1*i).toFixed(2)+")",410+(display_count-1)*150,95);
+        text(j+"("+(p2*j).toFixed(2)+")",410+(display_count-1)*150,125);
+        text(floor(d22/p3)+"("+(p3*(floor(d22/p3))).toFixed(2)+")",410+(display_count-1)*150,155);
+        var wastage = (rs-i*p1-j*p2-(floor(d22/p3)*p3));
         var tp = rs-wastage;
-        text(wastage,410+(display_count-1)*150,185);
-        text(tp,410+(display_count-1)*150,215);
+        text(wastage.toFixed(2),410+(display_count-1)*150,185);
+        text(tp.toFixed(2),410+(display_count-1)*150,215);
         if(display_count==3) {
-          i=0;
+          i=0;  
           j=0;
         }
       }
-    }
+    } 
   }
   }
   if(state==1){

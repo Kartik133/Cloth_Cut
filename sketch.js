@@ -7,11 +7,11 @@ function setup() {
   createCanvas(displayWidth,displayHeight);
   fill(0);
   textAlign(CENTER);
-  maw = createInput(0.10,"number");
-  roll_size = createInput(50,"number");
-  priority_1 = createInput(3.45,"number");
-  priority_2 = createInput(3.20,"number");
-  priority_3 = createInput(3.70,"number");
+  maw = createInput(0,"number");
+  roll_size = createInput(0,"number");
+  priority_1 = createInput(0,"number");
+  priority_2 = createInput(0,"number");
+  priority_3 = createInput(0,"number");
   set = createButton("Calculate");
   reset = createButton("Reset");
   maw.position(160,20);

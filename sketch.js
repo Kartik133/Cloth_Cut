@@ -7,6 +7,7 @@ let paragraph00,paragraph0,paragraph1,paragraph2,paragraph3,paragraph4,paragraph
 let printbtn,savebtn,updatebtn;
 let a=0;
 let results=[],sresults=[];
+let prioritycheck;
 
 function setup() {
   createCanvas(displayWidth,displayHeight);
@@ -52,6 +53,8 @@ function setup() {
   paragraph7.hide();
   paragraph8.hide();
 
+  prioritycheck = createCheckbox("Two Priorities Only");
+  prioritycheck.position(1000,65);
 
   printbtn = createButton("Print");
   savebtn = createButton("Save");
@@ -79,6 +82,7 @@ function createTextboxes() {
   paragraph6.show();
   paragraph7.show();
   paragraph8.show();
+  prioritycheck.attribute('disabled', '');
 
   inputBoxes = [];
 
@@ -145,6 +149,7 @@ function buttonClicked(clickedbtn) {
        let d22 = d2.toFixed(2);
        if(((d22)%p3).toFixed(2)<=maw && ((d22)%p3).toFixed(2)>=0) {
          display_count++;
+         
          fill(0);
          let p = createP(i+" ("+(p1*i).toFixed(2)+")");
          p.position(400,195+(clickedbtn-1)*100+(display_count-1)*20);
@@ -169,15 +174,20 @@ function buttonClicked(clickedbtn) {
          t.position(1400,195+(clickedbtn-1)*100+(display_count-1)*20);
          t.hide();
          results[(clickedbtn-1)*15+(display_count-1)*5+4]=t;
+
          if(display_count==3) {
            i=0;  
+           j=0;
+         }
+
+         if(prioritycheck.checked()) {
            j=0;
          }
        }
      } 
    }
 
-  for(let k = -0.1 ;k<=0.1;k+=0.02) {
+  for(let k = -0.1 ;k<=0.2;k+=0.1) {
     if(k!=0) {
     rsd = Number(rs)+Number(k);
     console.log(rs,rsd);
@@ -209,7 +219,7 @@ function buttonClicked(clickedbtn) {
          r.hide();
          sresults.push(r);
          let wastage = (rsd-i*p1-j*p2-(floor(d22/p3)*p3)-k);
-         let tp = rsd-wastage;
+         let tp = rs-wastage;
          let s = createP(wastage.toFixed(2));
          //s.position(1250,195+(clickedbtn-1)*100+(display_count1-1)*20+k*6000);
          s.hide();

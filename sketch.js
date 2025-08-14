@@ -8,9 +8,16 @@ let printbtn,savebtn,updatebtn;
 let a=0;
 let results=[],sresults=[];
 let prioritycheck;
+var database,cutCount=-1;
 
 function setup() {
   createCanvas(displayWidth,displayHeight);
+
+  database = firebase.database();
+  
+  database.ref("cutCount").on("value",(data)=> {
+    cutCount = data.val();
+  });
 
   baleno = createInput(0);
   baleno.position(150,60);
@@ -124,6 +131,12 @@ function createTextboxes() {
 
 function buttonClicked(clickedbtn) {
 
+  cutCount++;
+
+  database.ref("/").update({
+    cutCount:cutCount
+  });  
+
   for(let i = 0;i<results.length;i++) {
     if(results[i]!=-1) {
       results[i].hide();
@@ -190,7 +203,6 @@ function buttonClicked(clickedbtn) {
   for(let k = -0.1 ;k<=0.2;k+=0.1) {
     if(k!=0) {
     rsd = Number(rs)+Number(k);
-    console.log(rs,rsd);
     display_count1=0;
 
     for(let i = (rsd/p1).toFixed();i>=0;i--) {
@@ -237,7 +249,6 @@ function buttonClicked(clickedbtn) {
    }
   }
   }
-  console.log(sresults.length);
 }
 
 function update() {

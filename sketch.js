@@ -3,12 +3,13 @@ let count;
 let noofrolls;
 let submitBtn;
 let inputBoxes = [];
-let paragraph00,paragraph0,paragraph1,paragraph2,paragraph3,paragraph4,paragraph5,paragraph6;
+let paragraph00,paragraph0,paragraph1,paragraph2,paragraph3,paragraph4,paragraph5,paragraph6,paragraph7,paragraph8,paragraph9;
 let printbtn,savebtn,updatebtn;
 let a=0;
 let results=[],sresults=[];
 let prioritycheck;
 var database,cutCount=-1;
+let desp;
 
 function setup() {
   createCanvas(displayWidth,displayHeight);
@@ -53,12 +54,15 @@ function setup() {
   paragraph8 = createP("Total Production");
   paragraph8.style("font-weight","bold");
   paragraph8.position(1380,127.5);
+  paragraph9 = createP("Desired No. of 2nd Priority");
+  paragraph9.position(350,87.5);
   paragraph3.hide();
   paragraph4.hide();
   paragraph5.hide();
   paragraph6.hide();
   paragraph7.hide();
   paragraph8.hide();
+  paragraph9.hide();
 
   prioritycheck = createCheckbox("Two Priorities Only");
   prioritycheck.position(1000,65);
@@ -70,6 +74,10 @@ function setup() {
   savebtn.hide();
   printbtn.hide();
   updatebtn.hide();
+
+  desp = createInput(0,"number");
+  desp.position(550,100);
+  desp.hide();
 
   // Button to generate textboxes
   submitBtn = createButton("Submit");
@@ -89,6 +97,10 @@ function createTextboxes() {
   paragraph6.show();
   paragraph7.show();
   paragraph8.show();
+  if(prioritycheck.checked()){
+  paragraph9.show();
+  desp.show();
+  }
   prioritycheck.attribute('disabled', '');
 
   inputBoxes = [];
@@ -147,7 +159,6 @@ function buttonClicked(clickedbtn) {
   let rs,p1,p2,p3;
   let display_count=0;
   let display_count1=0;
-  let reset;
 
   rs = inputBoxes[5*clickedbtn-5].value();
   p1 = inputBoxes[5*clickedbtn-4].value();
@@ -157,10 +168,10 @@ function buttonClicked(clickedbtn) {
   for(let i = (rs/p1).toFixed();i>=0;i--) {
     let d1 = rs-i*p1;
     let d11 = d1.toFixed(2);
-     for(let j = ((d11)/p2).toFixed( );j>=0;j--) {
+      for(let j = ((d11)/p2).toFixed();j>=0;j--) {
        let d2 = d1-j*p2;
        let d22 = d2.toFixed(2);
-       if(((d22)%p3).toFixed(2)<=maw && ((d22)%p3).toFixed(2)>=0) {
+        if(((d22)%p3).toFixed(2)<=maw && ((d22)%p3).toFixed(2)>=0) {
          display_count++;
          
          fill(0);
@@ -196,13 +207,39 @@ function buttonClicked(clickedbtn) {
          if(prioritycheck.checked()) {
            j=0;
          }
-       }
-     } 
-   }
+        }
+      } 
+  }
+ if(prioritycheck.checked()) {
+  for(let i=-1;i<2;i++) {
+    let m=(Number(desp.value())+i);
+    let rsd = (Number(rs)-m*p2);
+    let o = createP("Roll "+clickedbtn+" ("+rs+")");
+    o.hide();
+    sresults.push(o);
+    let p = createP(floor(rsd/p1)+" ("+(p1*floor(rsd/p1)).toFixed(2)+")");
+    p.hide();
+    sresults.push(p);
+    let q = createP(m+" ("+(p2*m).toFixed(2)+")");
+    q.hide();
+    sresults.push(q);
+    let r = createP(0+" ("+0+")");
+    r.hide();
+    sresults.push(r);
+    let wastage = rs-m*p2-(p1*floor(rsd/p1));
+    let tp = rs-wastage;
+    let s = createP(wastage.toFixed(2));
+    s.hide();
+    sresults.push(s);
+    let t = createP(tp.toFixed(2));
+    t.hide();
+    sresults.push(t);
+  } 
+  }
 
   for(let k = -0.1 ;k<=0.2;k+=0.1) {
     if(k!=0) {
-    rsd = Number(rs)+Number(k);
+    let rsd = Number(rs)+Number(k);
     display_count1=0;
 
     for(let i = (rsd/p1).toFixed();i>=0;i--) {

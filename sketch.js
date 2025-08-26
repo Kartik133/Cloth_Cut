@@ -98,8 +98,8 @@ function createTextboxes() {
   paragraph7.show();
   paragraph8.show();
   if(prioritycheck.checked()){
-  paragraph9.show();
-  desp.show();
+    paragraph9.show();
+    desp.show();
   }
   prioritycheck.attribute('disabled', '');
 
@@ -134,8 +134,8 @@ function createTextboxes() {
     inputBoxes[5*i+4].position(1150,180+i*100);
   }
 
-  savebtn.show();
-  printbtn.show();
+  //savebtn.show();
+  //printbtn.show();
   updatebtn.show();
   savebtn.position(200,120+count*100);
   printbtn.position(200,160+count*100);
@@ -316,13 +316,13 @@ function draw() {
     }
   }
   for(let i = 0;i<sresults.length/6;i++) {
-      sresults[6*i].position(150,200+count*100+30*i);      
-      sresults[6*i+1].position(400,200+count*100+30*i);      
-      sresults[6*i+2].position(650,200+count*100+30*i);      
-      sresults[6*i+3].position(900,200+count*100+30*i);      
-      sresults[6*i+4].position(1250,200+count*100+30*i);      
-      sresults[6*i+5].position(1400,200+count*100+30*i);      
-  }
+      sresults[6*i].position(150,180+count*100+25*i);      
+      sresults[6*i+1].position(400,180+count*100+25*i);      
+      sresults[6*i+2].position(650,180+count*100+25*i);      
+      sresults[6*i+3].position(900,180+count*100+25*i);      
+      sresults[6*i+4].position(1250,180+count*100+25*i);      
+      sresults[6*i+5].position(1400,180+count*100+25*i);      
+  }2
 
   for(let i = 0;i<sresults.length;i++) {
     sresults[i].show();

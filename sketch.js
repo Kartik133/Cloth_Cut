@@ -165,10 +165,10 @@ function buttonClicked(clickedbtn) {
   p2 = inputBoxes[5*clickedbtn-3].value();
   p3 = inputBoxes[5*clickedbtn-2].value();
 
-  for(let i = (rs/p1).toFixed();i>=0;i--) {
+  for(let i = floor(rs/p1);i>=0;i--) {
     let d1 = rs-i*p1;
     let d11 = d1.toFixed(2);
-      for(let j = ((d11)/p2).toFixed();j>=0;j--) {
+      for(let j = floor((d11)/p2);j>=0;j--) {
        let d2 = d1-j*p2;
        let d22 = d2.toFixed(2);
         if(((d22)%p3).toFixed(2)<=maw && ((d22)%p3).toFixed(2)>=0) {
@@ -242,11 +242,11 @@ function buttonClicked(clickedbtn) {
     let rsd = Number(rs)+Number(k);
     display_count1=0;
 
-    for(let i = (rsd/p1).toFixed();i>=0;i--) {
+    for(let i = floor(rsd/p1);i>=0;i--) {
     console.log((rsd/p1),(rsd/p1).toFixed());
     let d1 = rsd-i*p1;
     let d11 = d1.toFixed(2);
-     for(let j = ((d11)/p2).toFixed( );j>=0;j--) {
+     for(let j = floor((d11)/p2);j>=0;j--) {
        let d2 = d1-j*p2;
        let d22 = d2.toFixed(2);
        if(((d22)%p3).toFixed(2)<=maw && ((d22)%p3).toFixed(2)>=0 && (rsd-i*p1-j*p2-(floor(d22/p3)*p3)-k).toFixed(2)!=0) {

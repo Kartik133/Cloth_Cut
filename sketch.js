@@ -243,6 +243,7 @@ function buttonClicked(clickedbtn) {
     display_count1=0;
 
     for(let i = (rsd/p1).toFixed();i>=0;i--) {
+    console.log((rsd/p1),(rsd/p1).toFixed());
     let d1 = rsd-i*p1;
     let d11 = d1.toFixed(2);
      for(let j = ((d11)/p2).toFixed( );j>=0;j--) {
